@@ -1,0 +1,240 @@
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000;
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+
+input, select {
+    vertical-align:middle;
+}
+
+/*======================================*/
+
+/*============ basic code ===========*/ 
+
+
+body {
+    line-height:1;
+    background-color: #F0F8FF;
+}
+
+.sticker {
+	/*background-color: lightgreen;*/
+	min-width: 250px;
+	min-height: 125px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	/*border: 1px solid #34b399;*/
+	box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+	overflow: visible;
+}
+
+.sticker .color {
+	position: absolute;
+	top: 5px;
+	right: -25px;
+	width: 25px;
+	background-color: gray;
+	opacity: 0.5;
+	height: 25px;
+	border-top-right-radius: 10%;
+	border: none;
+}
+
+.sticker .color i {
+	line-height: 25px;
+}
+
+.sticker .color:hover {
+	cursor: pointer;
+	background-color: gray;
+	opacity: 0.8;
+}
+
+.sticker .deleteBtn {
+	position: absolute;
+	top: 30px;
+	right: -25px;
+	width: 25px;
+	background-color: gray;
+	opacity: 0.5;
+	height: 25px;
+	border: none;
+}
+
+.sticker .deleteBtn i {
+	line-height: 25px;
+}
+
+.sticker .deleteBtn:hover {
+	cursor: pointer;
+	background-color: gray;
+	opacity: 0.8;
+}
+
+.sticker .bar {
+	position: absolute;
+	top: 55px;
+	right: -25px;
+	width: 25px;
+	background-color: gray;
+	opacity: 0.5;
+	height: 50px;
+	border-bottom-right-radius: 10%;
+}
+
+.sticker .bar i {
+	line-height: 50px;
+	z-index: -1;
+}
+
+.sticker .bar:hover {
+	cursor: move;
+	background-color: gray;
+	opacity: 0.8;
+}
+
+.sticker textarea {
+	margin: 0 0 0 0;
+	padding: 5px 10px;
+	box-sizing: border-box;
+	min-width: 250px;
+	min-height: 125px;
+	background-color: transparent;
+	border: none;
+	font-family: calibri;
+	font-size: 18px;,
+}
+
+.sticker textarea:active {
+	border: 1px solid black;
+}
+
+.sticker:hover {
+	z-index: 1;
+}
+
+.addNoteBtn {
+	font-size: 32px;
+	border: none;
+	margin: auto;
+	display: block;
+	background-color: transparent;
+}
+
+.addNoteBtn:hover {
+	cursor: pointer;
+}
+
+.half-circle {
+    background-color: lightgray;
+    width: 75px;
+    height: 37.5px;
+    -moz-border-radius: 75px 0 0 75px;
+    border-radius: 0px 0px 75px 75px;
+    margin-left: 40px;
+}
+
+div i {
+	font-size: 20px;
+	text-align: center;
+	display: block;
+}
+
+.jscolor {
+	position: absolute;
+	top: 6px;
+	right: -105px;
+	/*opacity: 0.5;*/
+	border: 1px solid black;
+	border-radius: 3px;
+	width: 75px;
+	text-align: center;
+}
+
+#rect {
+	background-color: #CC66FF;
+}

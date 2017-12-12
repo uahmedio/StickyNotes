@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Whiteboard</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="http://ionicons.com/cheatsheet.html">
+	<link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" type="text/css" href="http://fontawesome.io/icons/">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<script src="jscolor.js"></script>
+</head>
+<body>	
+	
+	<p class="half-circle"><button class="addNoteBtn"><i class="ion-android-add-circle"></i></button></p>	
+
+	<script src="jscolor.js"></script>
+
+	<!--<div class="sticker" id="rect">
+		<div class="bar"></div>
+		<button class="color" onclick="colorpicker"><i class="ion-android-color-palette"></i></button>
+		<button class="deleteBtn" onclick="deleteaction"><i class="ion-android-delete"></i></button>
+		<textarea></textarea>
+		<input class="jscolor" onchange="update(this.jscolor)" value="cc66ff">
+	</div>-->
+	
+<script type="text/javascript">
+	function update(jscolor) {
+    	document.getElementById('rect').style.backgroundColor = '#' + jscolor;
+}
+</script>
+<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="frameworks/jquery-3.2.1.js"></script>
+</body>
+</html>
