@@ -1,16 +1,18 @@
 (function () {
 	'use strict';
-
+  
+  	jscolor.installByClassName("jscolor");
+  
 	var draggedEl,
 		onDragStart, 
 		onDrag,
 		onDragEnd,
-		grabPointX,
-		grabPointY,
+		pointX,
+   		onDeleteNote,
+		pointY,
 		createNote,
 		addNoteBtnEl,
-		deleteNote,
-		deleteNoteBtnEl;
+   		totalNotes = 0;
 
 	onDragStart = function(ev) {
 		var boundClientRect;
@@ -22,8 +24,8 @@
 
 		boundClientRect = draggedEl.getBoundingClientRect();
 
-		grabPointY = boundClientRect.top - ev.clientY;
-		grabPointX = boundClientRect.left - ev.clientX;
+		pointY = boundClientRect.top - ev.clientY;
+		pointX = boundClientRect.left - ev.clientX;
 	};
 
 	onDrag = function(ev) {
@@ -31,8 +33,8 @@
 			return;
 		}
 
-		var posX = ev.clientX + grabPointX,
-			posY = ev.clientY + grabPointY;
+		var posX = ev.clientX + pointX,
+			posY = ev.clientY + pointY;
 
 		if (posX < 0){
 			posX = 0;
@@ -46,11 +48,15 @@
 
 	onDragEnd = function(){
 		draggedEl = null;
-		grabPointX = null;
-		grabPointY = null;
+		pointX = null;
+		pointY = null;
 	}
 
-	createNote = function(){
+	onDeleteNote = function(e){
+		document.body.removeChild(this.parentNode);
+	}
+
+	createNote = function(){    
 		// I stedet for at lave mine "bokse" i HTML laver jeg dem her og tilføjer dem ind i de
 		//	respekterende Elementer.
 		var stickerEl = document.createElement('div'),
@@ -73,14 +79,18 @@
 		stickerEl.classList.add('sticker');
 		color.classList.add('color');
 		deleteBtn.classList.add('deleteBtn');
+		deleteBtn.value = "Remove Element";
+		deleteBtn.onclick = function(){removeElement};
+
 		deleteBtnIcon.classList.add('ion-android-delete');
 		colorIcon.classList.add('ion-android-color-palette');
-		stickerEl.id = "rect";
-
+		stickerEl.id = "rect" + totalNotes++;        
+    
 		colorEl.classList.add('jscolor');
-		colorEl.onchange = function(){update(this.jscolor)};
-		colorEl.value = "cc66ff";
-
+    	colorEl.value = "FFEFA0";  
+    	var picker = new jscolor(colorEl);
+		colorEl.onchange = function(){ update(colorEl.value)};
+    
 		//moveIcon.classList.add('ion-arrow-move');		//Dette er iconnet til at flytte
 
 		// tilføj til:
@@ -94,23 +104,25 @@
 		barEl.append(moveIcon);
 
 		stickerEl.addEventListener('mousedown', onDragStart, false);
+		deleteBtn.addEventListener('click', onDeleteNote, false);
 
 		document.body.appendChild(stickerEl);
 		
 	};
 
-	
 	createNote();
 
 	addNoteBtnEl = document.querySelector('.addNoteBtn');
 	addNoteBtnEl.addEventListener('click', createNote, false);
 
-	/*deleteNoteBtnEl = document.querySelector('.deleteBtn');
-	deleteNoteBtnEl.addEventListener('click', deleteNote, false);*/
-
 	document.addEventListener('mousemove', onDrag, false);
 	document.addEventListener('mouseup', onDragEnd, false);
-	//deleteNote.addEventListener('click', deleteNote, false);
 	
+	function update(jscolor) {      
+		var colorCall = document.querySelectorAll(".jscolor-active");
+	   	var NotesCall = Array.prototype.filter.call(colorCall, function(colorCall){
+	   	  return colorCall.parentNode.style.backgroundColor =  "#" + jscolor;
+	    });
+	}
+  
 })();
-

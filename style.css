@@ -101,14 +101,13 @@ body {
 }
 
 .sticker {
-	/*background-color: lightgreen;*/
+	background-color: #cc66ff;
 	min-width: 250px;
-	min-height: 125px;
+	min-height: 90px;
 	position: absolute;
 	left: 0;
 	top: 0;
-	/*border: 1px solid #34b399;*/
-	box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+	box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
 	overflow: visible;
 }
 
@@ -122,6 +121,7 @@ body {
 	height: 25px;
 	border-top-right-radius: 10%;
 	border: none;
+	display: none;
 }
 
 .sticker .color i {
@@ -134,6 +134,10 @@ body {
 	opacity: 0.8;
 }
 
+.sticker:hover .color {
+	display: block;
+}
+
 .sticker .deleteBtn {
 	position: absolute;
 	top: 30px;
@@ -143,6 +147,7 @@ body {
 	opacity: 0.5;
 	height: 25px;
 	border: none;
+	display: none;
 }
 
 .sticker .deleteBtn i {
@@ -155,6 +160,10 @@ body {
 	opacity: 0.8;
 }
 
+.sticker:hover .deleteBtn {
+	display: block;
+}
+
 .sticker .bar {
 	position: absolute;
 	top: 55px;
@@ -162,13 +171,9 @@ body {
 	width: 25px;
 	background-color: gray;
 	opacity: 0.5;
-	height: 50px;
+	height: 25px;
 	border-bottom-right-radius: 10%;
-}
-
-.sticker .bar i {
-	line-height: 50px;
-	z-index: -1;
+	display: none;
 }
 
 .sticker .bar:hover {
@@ -177,12 +182,16 @@ body {
 	opacity: 0.8;
 }
 
+.sticker:hover .bar {
+	display: block;
+}
+
 .sticker textarea {
 	margin: 0 0 0 0;
 	padding: 5px 10px;
 	box-sizing: border-box;
 	min-width: 250px;
-	min-height: 125px;
+	min-height: 90px;
 	background-color: transparent;
 	border: none;
 	font-family: calibri;
@@ -227,14 +236,18 @@ div i {
 .jscolor {
 	position: absolute;
 	top: 6px;
-	right: -105px;
-	/*opacity: 0.5;*/
+	right: -102px;
 	border: 1px solid black;
 	border-radius: 3px;
 	width: 75px;
 	text-align: center;
+	display: none;
 }
 
-#rect {
-	background-color: #CC66FF;
+.sticker:hover .jscolor {
+	display: block;
+}
+
+.sticker {
+	background-color: #FFEFA0;
 }
