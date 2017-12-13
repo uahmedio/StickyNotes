@@ -121,7 +121,6 @@ body {
 	height: 25px;
 	border-top-right-radius: 10%;
 	border: none;
-	display: none;
 }
 
 .sticker .color i {
@@ -134,10 +133,6 @@ body {
 	opacity: 0.8;
 }
 
-.sticker:hover .color {
-	display: block;
-}
-
 .sticker .deleteBtn {
 	position: absolute;
 	top: 30px;
@@ -147,7 +142,6 @@ body {
 	opacity: 0.5;
 	height: 25px;
 	border: none;
-	display: none;
 }
 
 .sticker .deleteBtn i {
@@ -160,10 +154,6 @@ body {
 	opacity: 0.8;
 }
 
-.sticker:hover .deleteBtn {
-	display: block;
-}
-
 .sticker .bar {
 	position: absolute;
 	top: 55px;
@@ -173,17 +163,12 @@ body {
 	opacity: 0.5;
 	height: 25px;
 	border-bottom-right-radius: 10%;
-	display: none;
 }
 
 .sticker .bar:hover {
 	cursor: move;
 	background-color: gray;
 	opacity: 0.8;
-}
-
-.sticker:hover .bar {
-	display: block;
 }
 
 .sticker textarea {
@@ -241,11 +226,6 @@ div i {
 	border-radius: 3px;
 	width: 75px;
 	text-align: center;
-	display: none;
-}
-
-.sticker:hover .jscolor {
-	display: block;
 }
 
 .sticker {
