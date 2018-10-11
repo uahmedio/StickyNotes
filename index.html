@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Whiteboard</title>
 	<meta charset="utf-8">
@@ -10,26 +11,35 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<script src="jscolor.js"></script>
 </head>
-<body>	
-	
-	<p class="half-circle"><button class="addNoteBtn"><i class="ion-android-add-circle"></i></button></p>	
+
+<body>
+
+	<p class="half-circle"><button class="addNoteBtn"><i class="ion-android-add-circle"></i></button></p>
 
 	<script src="jscolor.js"></script>
 
-	<!--<div class="sticker" id="rect">
-		<div class="bar"></div>
-		<button class="color" onclick="colorpicker"><i class="ion-android-color-palette"></i></button>
-		<button class="deleteBtn" onclick="deleteaction"><i class="ion-android-delete"></i></button>
-		<textarea></textarea>
-		<input class="jscolor" onchange="update(this.jscolor)" value="cc66ff">
-	</div>-->
-	
-<script type="text/javascript">
-	function update(jscolor) {
-    	document.getElementById('rect').style.backgroundColor = '#' + jscolor;
-}
-</script>
-<script type="text/javascript" src="script.js"></script>
-<script type="text/javascript" src="frameworks/jquery-3.2.1.js"></script>
+	<div id="whiteboardContainer">
+
+
+		<!-- <div class="sticker">
+			<div class="bar"></div>
+			<button class="color"></button>
+			<button class="deleteBtn"></button>
+			<input autocomplete="off" class="jscolor">
+			<textarea></textarea>
+		</div> -->
+
+
+
+	</div>
+
+	<script type="text/javascript">
+		function update(jscolor) {
+			document.getElementById('rect').style.backgroundColor = '#' + jscolor;
+		}
+	</script>
+	<script type="text/javascript" src="frameworks/jquery-3.2.1.js"></script>
+	<script type="text/javascript" src="script.js"></script>
 </body>
+
 </html>
