@@ -213,7 +213,7 @@ body {
 }
 
 div i {
-	font-size: 20px;
+	font-size: 25px;
 	text-align: center;
 	display: block;
 }
@@ -226,8 +226,17 @@ div i {
 	border-radius: 3px;
 	width: 75px;
 	text-align: center;
+	display: none;
 }
 
 .sticker {
 	background-color: #FFEFA0;
+}
+
+
+#whiteboardContainer {
+	margin: 10px;
+	background-color: aqua;
+	height: 500px;
+	width: 60%;
 }

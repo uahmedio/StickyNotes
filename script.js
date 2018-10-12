@@ -1,139 +1,129 @@
-;(function() {
-    "use strict"
+(function() {
+	"use strict";
 
-    jscolor.installByClassName("jscolor")
+	jscolor.installByClassName("jscolor");
 
-    var draggedEl,
-        onDragStart,
-        onDrag,
-        onDragEnd,
-        pointX,
-        onDeleteNote,
-        pointY,
-        createNote,
-        addNoteBtnEl,
-        totalNotes = 0
+	let draggedEl;
+	let pointX;
+	let pointY;
+	let totalNotes = 0;
 
-    onDragStart = function(ev) {
-        var boundClientRect
-        if (ev.target.className.indexOf("bar") === -1) {
-            return
-        }
+	let onDragStart = function(ev) {
+		var boundClientRect;
+		if (ev.target.className.indexOf("bar") === -1) {
+			return;
+		}
 
-        draggedEl = this
+		draggedEl = this;
 
-        boundClientRect = draggedEl.getBoundingClientRect()
+		boundClientRect = draggedEl.getBoundingClientRect();
 
-        pointY = boundClientRect.top - ev.clientY
-        pointX = boundClientRect.left - ev.clientX
-    }
+		pointY = boundClientRect.top - ev.clientY;
+		pointX = boundClientRect.left - ev.clientX;
+	};
 
-    onDrag = function(ev) {
-        if (!draggedEl) {
-            return
-        }
+	let onDrag = function(ev) {
+		if (!draggedEl) {
+			return;
+		}
 
-        var posX = ev.clientX + pointX,
-            posY = ev.clientY + pointY
+		var posX = ev.clientX + pointX,
+			posY = ev.clientY + pointY;
 
-        if (posX < 0) {
-            posX = 0
-        }
-        if (posY < 0) {
-            posY = 0
-        }
+		if (posX < 0) {
+			posX = 0;
+		}
+		if (posY < 0) {
+			posY = 0;
+		}
 
-        draggedEl.style.transform =
-            "translateX(" + posX + "px) translateY(" + posY + "px)"
-    }
+		draggedEl.style.transform =
+			"translateX(" + posX + "px) translateY(" + posY + "px)";
+	};
 
-    onDragEnd = function() {
-        draggedEl = null
-        pointX = null
-        pointY = null
-    }
+	let onDragEnd = function() {
+		draggedEl = null;
+		pointX = null;
+		pointY = null;
+	};
 
-    onDeleteNote = function(e) {
-        // document.body.removeChild(this.parentNode);
-        document
-            .getElementById("whiteboardContainer")
-            .removeChild(this.parentNode)
-    }
+	let onDeleteNote = function(e) {
+		document
+			.getElementById("whiteboardContainer")
+			.removeChild(this.parentNode);
+	};
 
-    createNote = function() {
-        // I stedet for at lave mine "bokse" i HTML laver jeg dem her og tilføjer dem ind i de
-        //	respekterende Elementer.
-        var stickerEl = document.createElement("div"),
-            barEl = document.createElement("div"),
-            color = document.createElement("button"),
-            colorIcon = document.createElement("i"),
-            deleteBtn = document.createElement("button"),
-            deleteBtnIcon = document.createElement("i"),
-            moveIcon = document.createElement("i"),
-            colorEl = document.createElement("input"),
-            textareaEl = document.createElement("textarea")
+	let createNote = function() {
+		// Just getting some random coordinates, so every notes dont get stacked
+		var transformCSSValue =
+			"translateX(" +
+			Math.random() * 800 +
+			"px) translateY(" +
+			Math.random() * 400 +
+			"px)";
 
-        //Hvilke område der kan printes en ny seddel på siden!
-        var transformCSSValue =
-            "translateX(" +
-            Math.random() * 800 +
-            "px) translateY(" +
-            Math.random() * 400 +
-            "px)"
+		// creating a unique Note Id
+		let stickerId = "rect" + totalNotes++;
 
-        stickerEl.style.transform = transformCSSValue
+		// Creating the Note container
+		let $div = $("<div>", {
+			id: stickerId,
+			class: "sticker",
+			style: `transform:${transformCSSValue}`
+		});
 
-        //Giver dem en class
-        barEl.classList.add("bar")
-        stickerEl.classList.add("sticker")
-        color.classList.add("color")
-        deleteBtn.classList.add("deleteBtn")
-        deleteBtn.value = "Remove Element"
+		// Giving the Note container some button and input fields content
+		$($div).append(`
+			<div class="bar"></div>
+			<button class="color ion-android-color-palette"></button>
+			<button class="deleteBtn ion-android-delete"></button>
+			<input id="inputId${totalNotes}" autocomplete="off" class="jscolor">
+			<textarea></textarea>
+			`);
 
-        deleteBtnIcon.classList.add("ion-android-delete")
-        colorIcon.classList.add("ion-android-color-palette")
-        stickerEl.id = "rect" + totalNotes++
+		// Setting our Note container to the html div
+		$("#whiteboardContainer").append($div);
 
-        colorEl.classList.add("jscolor")
-        colorEl.value = "FFEFA0"
-        var picker = new jscolor(colorEl)
-        colorEl.onchange = function() {
-            update(colorEl.value)
-        }
+		// Finding the setting the Sticker input
+		let colorBtnInput = $("#" + stickerId + " input");
+		colorBtnInput.val("FFEFA0");
 
-        //moveIcon.classList.add('ion-arrow-move');		//Dette er iconnet til at flytte
+		// creating a new jscolor object, because else it will not be able to create new note
+		// and set the colors of them
+		let picker = new jscolor(
+			document.getElementById("inputId" + totalNotes)
+		);
+		// When we change the value on the color changer
+		$("#" + stickerId + " input").change(function() {
+			// Then we want to change the color of the input textare field
+			$("#" + stickerId).css(
+				"background-color",
+				"#" + colorBtnInput.val()
+			);
+		});
+		// When we are holding down the moving part
+		$("#" + stickerId).mousedown(onDragStart);
+		// When we click the delete button
+		$("#" + stickerId + " .deleteBtn").click(onDeleteNote);
 
-        // tilføj til:
-        stickerEl.append(barEl)
-        stickerEl.append(color)
-        stickerEl.append(deleteBtn)
-        stickerEl.append(colorEl)
-        stickerEl.appendChild(textareaEl)
-        color.append(colorIcon)
-        deleteBtn.append(deleteBtnIcon)
-        barEl.append(moveIcon)
+		// Just a on click to hide or display the color picker
+		$("#" + stickerId + " .color").click(function() {
+			if ($("#" + stickerId + " input").css("display") === "none") {
+				$("#" + stickerId + " input").css("display", "block");
+			} else {
+				$("#" + stickerId + " input").css("display", "none");
+			}
+		});
+	};
 
-        stickerEl.addEventListener("mousedown", onDragStart, false)
-        deleteBtn.addEventListener("click", onDeleteNote, false)
+	// Creating the first Note
+	createNote();
 
-        // document.body.appendChild(stickerEl);
-        document.getElementById("whiteboardContainer").appendChild(stickerEl)
-    }
+	// Creating a new Note
+	$(".addNoteBtn").click(createNote);
 
-    createNote()
-
-    addNoteBtnEl = document.querySelector(".addNoteBtn")
-    addNoteBtnEl.addEventListener("click", createNote, false)
-
-    document.addEventListener("mousemove", onDrag, false)
-    document.addEventListener("mouseup", onDragEnd, false)
-
-    function update(jscolor) {
-        var colorCall = document.querySelectorAll(".jscolor-active")
-        var NotesCall = Array.prototype.filter.call(colorCall, function(
-            colorCall
-        ) {
-            return (colorCall.parentNode.style.backgroundColor = "#" + jscolor)
-        })
-    }
-})()
+	// When we are moving our mouse. And giving the element we are moving new x and y pos
+	$(document).mousemove(onDrag);
+	// spotting the dragging of the element and clearing it
+	$(document).mouseup(onDragEnd);
+})();
